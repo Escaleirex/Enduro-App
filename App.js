@@ -1,58 +1,100 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image } from 'react-native';// Rest of the import statements
-import * as Font from "expo-font";
-import Apploading from "expo-app-loading";
+import { StatusBar } from "expo-status-bar";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TextInput,
+  Button,
+  TouchableOpacity,
+} from "react-native";
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+} from '@react-native-google-signin/google-signin';
 
 export default function App() {
-
-  const [fontsloaded, setFontsLoaded] = useState(false);
-
-  const getFonts = () =>
-  Font.loadAsync({
-    LexendDeca: require("./assets/fonts/LexendDeca.ttf"),
-  });
-
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   return (
-    <View style={styles.container}>
-      <View style={styles.logotext}>
-          <Image source={require('./assets/logo.png')} style={styles.logo}/>
-          <Text style={styles.text}>Login</Text>
-      </View>
+    <View style={styles.Container}>
+      <Image style={styles.Image} source={require("./assets/logo.png")} /> 
+
       <StatusBar style="auto" />
-    </View>
+
+      <View style={styles.InputView}>
+        <TextInput
+          style={styles.TextInput}
+          placeholder="Email"
+          placeholderTextColor="#003f5c"
+          onChangeText={(email) => setEmail(email)}
+        /> 
+      </View> 
+
+      <View style={styles.InputView}>
+        <TextInput
+          style={styles.TextInput}
+          placeholder="Password"
+          placeholderTextColor="#003f5c"
+          secureTextEntry={true}
+          onChangeText={(password) => setPassword(password)}
+        /> 
+      </View> 
+
+      <TouchableOpacity>
+        <Text style={styles.ForgotButton}>Forgot Password?</Text> 
+      </TouchableOpacity> 
+
+      <TouchableOpacity style={styles.LoginBtn}>
+        <Text style={styles.LoginText}>LOGIN</Text> 
+      </TouchableOpacity> 
+
+      <Text style={styles.Or}>or</Text>
+
+
+    </View> 
   );
 }
-
 const styles = StyleSheet.create({
-  container: {
+  Container: {
     flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#fff',
-    marginTop: 40,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
-
-  logotext:{
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
+  Image: {
+    marginBottom: 40,
+    width: 250,
+    height: 250,
   },
-
-  text: {
-    flex: 1,
-    color: '#000000', 
-    fontSize: 35,
-    fontFamily: 'LexendDeca',
-    fontWeight: '700',
+  InputView: {
+    backgroundColor: "#b6cfd9",
+    borderRadius: 30,
+    width: "80%",
+    height: 60,
+    marginBottom: 20,
   },
-
-  logo: {
+  TextInput: {
+    height: 70,
     flex: 1,
-    justifyContent: 'center',
-    width: '75%',
-    resizeMode: 'center',
-  }
+    padding: 10,
+    paddingLeft: 20,
+  },
+  ForgotButton: {
+    height: 30,
+  },
+  LoginBtn: {
+    width: "80%",
+    borderRadius: 25,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 12,
+    backgroundColor: "#438fab",
+  },
+  Or:{
+    margin: 20,
+  },
 });
-
-
-//GIT TEST
