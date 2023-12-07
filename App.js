@@ -9,11 +9,6 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
-import {
-  GoogleSignin,
-  GoogleSigninButton,
-  statusCodes,
-} from '@react-native-google-signin/google-signin';
 
 export default function App() {
   const [email, setEmail] = useState("");
@@ -53,7 +48,9 @@ export default function App() {
 
       <Text style={styles.Or}>or</Text>
 
-
+      <View>
+        
+      </View>
     </View> 
   );
 }
